@@ -1,7 +1,11 @@
-<ul>
-  <% @issues.each do |issue| -%>
-    <li>
-      <%= link_to issue.subject, issue_path(issue) %>
-    </li>
-  <% end -%>
-</ul>
+<% unless @issues.empty? -%>
+  <ul>
+    <% @issues.each do |issue| -%>
+      <li>
+        <%= link_to issue.subject, issue_path(issue) %>
+      </li>
+    <% end -%>
+  </ul>
+<% else -%>
+  <p>Sorry, no issues for that period</p>
+<% end -%>
