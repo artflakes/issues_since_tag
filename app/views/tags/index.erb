@@ -1,7 +1,7 @@
 <ul>
   <% @tags.each do |tag| -%>
     <li>
-    <%= link_to tag, tag_path(:id => @project.id, :tag => tag) %>
+    <%= link_to tag, tag_path(:id => @project.id, :tag => tag[0], :before_tag => tag[1]) %>
     </li>
   <% end -%>
 </ul>

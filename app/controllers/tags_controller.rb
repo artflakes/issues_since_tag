@@ -2,11 +2,15 @@ class TagsController < ApplicationController
   before_filter :find_repository
 
   def index
-    @tags = @repository.tags
+    @tags = []
+    raw_tags = @repository.tags
+    raw_tags.each_with_index do |tag,i|
+      @tags << [ tag, raw_tags[i+1] ]
+    end
   end
 
   def show
-    @issues = @repository.find_issues_for_tags params[:tag]
+    @issues = @repository.find_issues_for_tag params[:tag], params[:before_tag]
   end
 
   private

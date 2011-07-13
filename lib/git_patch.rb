@@ -14,8 +14,8 @@ module GitPatch
 
   module InstanceMethods
 
-    def changesets_since_tag tag
-      revs = scm.revisions(nil,tag,nil)
+    def changesets_between_tags tag, before_tag
+      revs = scm.revisions(nil, before_tag, tag)
       return [] if revs.nil? || revs.empty?
 
       changesets.find(

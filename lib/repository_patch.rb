@@ -13,8 +13,12 @@ module RepositoryPatch
   end
 
   module InstanceMethods
-    def find_issues_for_tags tag
-      changesets_since_tag(tag).each(&:scan_comment_for_issue_ids)
+    def find_issues_for_tag tag, before_tag
+      issues = []
+      changesets_between_tags(tag, before_tag).each do |changeset|
+        issues += changeset.issues
+      end
+      issues
     end
   end
 end
