@@ -1,0 +1,8 @@
+<ul>
+  <% @tags.each do |tag| -%>
+    <li>
+    <%= link_to tag, tag_path(:id => @project.id, :tag => tag) %>
+    </li>
+  <% end -%>
+</ul>
+
