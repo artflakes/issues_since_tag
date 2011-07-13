@@ -1,4 +1,8 @@
 <ul>
+  <% ft = @tags.first -%>
+  <li>
+    <%= link_to "HEAD -> #{ ft }", tag_path(:id => @project.id, :tag => nil, :before_tag => ft[0]) %>
+  </li>
   <% @tags.each do |tag| -%>
     <li>
     <%= link_to "#{ tag[0] } -> #{ tag[1] }", tag_path(:id => @project.id, :tag => tag[0], :before_tag => tag[1]) %>
