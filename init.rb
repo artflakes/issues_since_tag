@@ -13,9 +13,9 @@ Redmine::Plugin.register :issues_since_tag do
   author_url 'http://netsteward.net'
 
   permission :issues_since_tag, {:issues_since_tag => [:index, :show]}, :public => true
-  menu :project_menu, :issues_since_tag, { :controller => 'tags', :action => 'index' }, :caption => 'issues_since_tag'
+  menu :project_menu, :issues_since_tag, { :controller => 'tags', :action => 'index' }, :caption => 'Issues For Tags'
 
   project_module :issues_since_tag do
-    permission :view_issues_since_tag, :tags => [:index, :show]
+    permission :view_issues_since_tag, {:tags => [:index, :show]}, :public => true
   end
 end
