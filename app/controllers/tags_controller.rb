@@ -4,6 +4,7 @@ class TagsController < ApplicationController
   def index
     @tags = []
     raw_tags = @repository.tags
+    raw_tags.reverse!
     raw_tags.each_with_index do |tag,i|
       @tags << [ tag, raw_tags[i+1] ]
     end
