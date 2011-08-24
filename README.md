@@ -2,7 +2,8 @@
 _Answers the question "What did/should we got in with this deploy?"_
 
 Issues_since_tag displays the issues related to commits since a given
-tag. It assumes that:
+tag or between two tags. It assumes that:
+
   * there is an repository configured with a project
   * you create tags for each deploy
 
@@ -32,12 +33,12 @@ tag" to activate it for this project.
 Build some magic which create a tag at each deploy. If you use
 capistrano, like we do, you could use this snippet:
 
-> task :push_deploy_tag do
->   user = `git config --get user.name`.chomp
->   email = `git config --get user.email`.chomp
->   puts `git tag #{Time.now.strftime("%y-%m-%d-%H%M-") + current_revision} -m "Deployed by #{user} <#{email}>"`
->   puts `git push --tags origin`
-> end
+    task :push_deploy_tag do
+      user = `git config --get user.name`.chomp
+      email = `git config --get user.email`.chomp
+      puts `git tag #{Time.now.strftime("%y-%m-%d-%H%M-") + current_revision} -m "Deployed by #{user} <#{email}>"`
+      puts `git push --tags origin`
+    end
 
 And that's it! :)
 
