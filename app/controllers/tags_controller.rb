@@ -1,6 +1,9 @@
 class TagsController < ApplicationController
   before_filter :find_repository
 
+  # fetch the tags and put them in order. This certainly got refactored
+  # out in a higher-level function, when we're going to support another
+  # (distributed) version system.
   def index
     @tags = []
     raw_tags = @repository.tags
@@ -11,7 +14,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @issues = @repository.find_issues_for_tag params[:tag], params[:before_tag]
+    @issues = @repository.find_issues_between_tags params[:tag], params[:before_tag]
   end
 
   private
